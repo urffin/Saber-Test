@@ -1,0 +1,12 @@
+﻿.message-center, #messages {
+    margin-top: 30px;
+}
+
+.message {
+    width: 600px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+    margin-bottom: 10px;
+}

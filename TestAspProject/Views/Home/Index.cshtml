@@ -1,0 +1,25 @@
+﻿<link href="~/Content/styles.css" rel="stylesheet" />
+<h2>Text template : @ViewBag.Template</h2>
+<div ng-app="msgcenter-app" ng-controller="ctrl as vm" ng-cloak>
+    <div>
+        <span>Enter valid text</span>
+        <input type="text" id="textInput" ng-model="vm.textInput" />
+        <input type="button" id="parse" ng-click="vm.send()" value="Parse" />
+    </div>
+
+    <div class="message-center">
+        <label ng-cloak><input type="radio" name="type" value="all" ng-model="vm.type" /> All messages</label>
+        <label ng-cloak><input type="radio" name="type" value="latest" ng-model="vm.type" /> Latest {{vm.latestCount}}</label>
+
+        <div id="messages" ng-class="vm.type">
+            <div class="message" ng-repeat="msg in vm.messages |filter:vm.removed| limitTo:vm.types[vm.type]">
+                <span>{{msg.date | date:'dd.MM.yyyy HH:mm:ss'}}</span>
+                <span>{{msg.type}}</span>
+                <span>{{msg.text}}</span>
+                <span ng-click="vm.removeMessage(msg)">X</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/app.js"></script>
